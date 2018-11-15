@@ -7,19 +7,27 @@
             My Hello Web App Project
         {% endblock title %}
     </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     {% block header %}{% endblock header %}
 </head>
-<body>
+<body class="bg-grey-lighter pt-6 pl-6 pr-6">
     <header>
-        <h1>Hello Web App</h1> 
-        <nav>
+        <h1 class="text-center avenir tracking-wide">Bands I like</h1>
+        <h2 class="text-center avenir tracking-wide">And maybe you should too</h2> 
+        <nav class="avenir tracking-wide">
             <ul>
                 <li><a href="{% url 'home' %}">Home</a>
                 </li> <li><a href="{% url 'about' %}">About</a>
                 </li> <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul> 
         </nav>
+        <div class="text-center">
+        <img src="https://chicagolighthouse.org/wp-content/uploads/2016/07/wilco.jpg" height="250" width="250">
+        <img src="https://naxonaxo.files.wordpress.com/2009/11/teenagefanclub2.jpg" height="300" width="300">
+        <img src="http://www.qromag.com/wp-content/uploads/2012/03/theshinsmar18z.jpg"height="300" width="300">
+        </div>
     </header>
     {% block content %}{% endblock content %}
     {% block footer %}{% endblock footer %} 
