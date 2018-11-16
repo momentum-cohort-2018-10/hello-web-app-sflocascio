@@ -21,11 +21,15 @@ from collection import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('admin/', admin.site.urls),
     path('about/',
         TemplateView.as_view(template_name='about.html'),
         name='about'), 
     path('contact/',
         TemplateView.as_view(template_name='contact.html'),
         name='contact'),
+    path('bands/<slug>/', views.band_detail,                     
+        name='band_detail'),
+    path('bands/<slug>/edit/',
+        views.edit_band, name='edit_band'),
+    path('admin/', admin.site.urls),
 ]

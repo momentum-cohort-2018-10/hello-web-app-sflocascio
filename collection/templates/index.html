@@ -6,8 +6,10 @@
 {% endblock title %}
 
 {% block content %}
-    {% for Bands in Bandss %}
-    <h2 class="avenir tracking-wide">{{ Bands.name }}</h2>
-    <p class="avenir">{{ Bands.description }}</p>
+    {% for band in bands %}
+    <h2 class="avenir tracking-wide"><a href="{% url 'band_detail' slug=band.slug %}">
+        {{ band.name }}
+    </a></h2>
+    <p class="avenir">{{ band.description }}</p>
     {% endfor %}
 {% endblock content %}

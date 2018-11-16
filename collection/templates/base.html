@@ -13,10 +13,10 @@
     {% block header %}{% endblock header %}
 </head>
 <body class="bg-grey-lighter pt-6 pl-6 pr-6">
-    <header>
-        <h1 class="text-center avenir tracking-wide">Bands I like</h1>
+    <header class="bg-grey">
+        <h1 class="text-center avenir tracking-wide text-5xl">Bands I like</h1>
         <h2 class="text-center avenir tracking-wide">And maybe you should too</h2> 
-        <nav class="avenir tracking-wide">
+        <nav class="avenir tracking-wide bg-grey">
             <ul>
                 <li><a href="{% url 'home' %}">Home</a>
                 </li> <li><a href="{% url 'about' %}">About</a>
@@ -24,9 +24,9 @@
             </ul> 
         </nav>
         <div class="text-center">
-        <img src="https://chicagolighthouse.org/wp-content/uploads/2016/07/wilco.jpg" height="250" width="250">
-        <img src="https://naxonaxo.files.wordpress.com/2009/11/teenagefanclub2.jpg" height="300" width="300">
-        <img src="http://www.qromag.com/wp-content/uploads/2012/03/theshinsmar18z.jpg"height="300" width="300">
+        <img src="https://chicagolighthouse.org/wp-content/uploads/2016/07/wilco.jpg" width="250">
+        <img src="https://naxonaxo.files.wordpress.com/2009/11/teenagefanclub2.jpg" width="300">
+        <img src="http://www.qromag.com/wp-content/uploads/2012/03/theshinsmar18z.jpg" width="300">
         </div>
     </header>
     {% block content %}{% endblock content %}
