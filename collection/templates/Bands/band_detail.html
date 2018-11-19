@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-
-
 {% block title %}
     {{ band.name }} - {{ block.super }} 
 {% endblock title %}
@@ -8,8 +6,10 @@
 {% block content %}
     <h2 class="avenir tracking-wide">{{ band.name }}</h2>
     <p class="avenir">{{ band.description }}</p>
-    <a href="{% url 'edit_band' slug=band.slug %}">
-        Edit me!
-    </a>
-
+    {% if user == band.user %}
+    <p>
+        <a href="{% url 'edit_band' slug=band.slug %}"> Edit me!
+        </a> 
+    </p>
+{% endif %}
 {% endblock content %}

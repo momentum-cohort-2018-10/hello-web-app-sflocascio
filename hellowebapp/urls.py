@@ -14,10 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.urls import path, include
 from django.urls import path
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from django.contrib import admin
 from collection import views
+from collection.backends import MyRegistrationView
+from django.contrib.auth.views import ( 
+	PasswordResetView, PasswordResetDoneView, 
+	PasswordResetConfirmView, PasswordResetCompleteView, 
+)
+#need to import conf
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -27,9 +34,38 @@ urlpatterns = [
     path('contact/',
         TemplateView.as_view(template_name='contact.html'),
         name='contact'),
+    path('things/', RedirectView.as_view( pattern_name='browse',                permanent=True)),
     path('bands/<slug>/', views.band_detail,                     
         name='band_detail'),
     path('bands/<slug>/edit/',
         views.edit_band, name='edit_band'),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('accounts/register/', MyRegistrationView.as_view(),                    name='registration_register'),
+    path('accounts/create_band/', views.create_band,                           name='registration_create_band'),
+    path('browse/', RedirectView.as_view(
+        pattern_name='browse', permanent=True)),
+    path('browse/name/',
+        views.browse_by_name, name='browse'),
+    path('browse/name/<initial>/',
+        views.browse_by_name, name='browse_by_name'),
+    path('accounts/password/reset/', PasswordResetView.as_view                  (template_name='registration/password_reset_form.html'),                name="password_reset"),
+	path('accounts/password/reset/done/', PasswordResetView.as_view             (template_name='registration/password_reset_done.html'),                name="password_reset_done"),
+	path('accounts/password/reset/<uidb64>/<token>/',                           PasswordResetConfirmView.as_view                                        (template_name='registration/password_reset_confirm.html'),             name="password_reset_confirm"),
+	path('accounts/password/done/', PasswordResetCompleteView.as_view           (template_name='registration/password_reset_complete.html'),
+        name="password_reset_complete"),
+	path('accounts/', include('registration.backends.simple.urls')),
+
+
+
     path('admin/', admin.site.urls),
 ]
+
+
+
+
+#for photos
+# if settings.DEBUG:
+#     urlpatterns += static(
+#         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    #if you have anything in your app that sends email its called email.backend , do not mess with it 
